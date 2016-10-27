@@ -9,7 +9,7 @@ $(function(){
 				$("ol").append(
 					$('<li>')).append(
 						$('<a>').attr('href', (data.url)).append(
-							(data.title) + (" by: " + (data.by))));
+							(data.title) + (" | by: " + (data.by))));
 				// console.log(data.by);
 				
 
