@@ -1,5 +1,4 @@
-$(function(){
-	var favoritesArray = [];
+$(function(){var favoritesArray = [];
 	$favoritesList = $("#favoritesList");
 	$.getJSON("https://hn-favorites.herokuapp.com/stories.json").then(function(response){
 		parseData(response);
