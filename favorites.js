@@ -12,7 +12,6 @@ $(function(){
 		console.log(favoritesArray);
 
 		favoritesArray.forEach(function(arrayItem,idx){
-			console.log(arrayItem);
 			var $divRow = $("<div>", {
 				class: "row border"
 			});
@@ -41,28 +40,34 @@ $(function(){
 					      .append($($firstColBox)
 					      .append($storyBox)
 					      .append($authorBox))
-					      .append($deleteBox)
-					      .append($deleteBtn));
+					      .append($($deleteBox)
+					      .append($deleteBtn)));		 
+		});
 
-			$favoritesList.on("click", "button", function(e){
-				
-			});
-							 
+		$favoritesList.on("click", "button", function(e){
+			var $listRows = $("#favoritesList").children();
+			var $clickedOn = $(e.target).parent().parent();
+			var rowNumber = $listRows.index($clickedOn);
+			deleteFavoriteServerCall(favoritesArray[rowNumber].id, rowNumber);
+
+			
 		});
 
 	}
 
-	function removeFavoriteFromDisplay(){
-
+	function removeFavoriteFromDisplay(rowNumber){
+		console.log("SUCCESS! " + rowNumber);
+		var $listRows = $("#favoritesList").children();
+		$listRows.eq(rowNumber).remove();
 	}
 
-	function deleteFavoriteServerCall(idNumber){
+	function deleteFavoriteServerCall(idNumber, rowNumber){
 		$.ajax({
 		    method: "DELETE",
 		    header: "Content-Type: application/json",
 		    url: "https://hn-favorites.herokuapp.com/stories/"+idNumber+".json"
 		}).then(function(response){
-		    console.log(response);
+		    removeFavoriteFromDisplay(rowNumber);
 		}).catch(function(error){
 		    console.log(error);
 		});
