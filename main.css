@@ -4,8 +4,12 @@
 	padding: 5;
 }
 
-/*#btn{
-	width: 5px;
-	height: 5px;
-	padding: 5px;
-}*/
+.notLoggedIn {
+	width: 9999px;
+	height: 9999px;
+	background-color: white;
+}
+
+.loggedIn {
+
+}

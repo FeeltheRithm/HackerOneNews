@@ -27,10 +27,29 @@ $(function(){
 			});
 		}
 	});
+
+
+
+	$("#login").on('submit', function(event){	
+		event.preventDefault();
+		var email = ($("#mail")).val();
+		var password = ($("#pass")).val();
+		$.post("https://hn-favorites.herokuapp.com/login", {"email": email, "password": password}).then(function(response){
+			var authToken = response;
+			console.log(authToken);
+			$(".notLoggedIn").addClass('loggedIn').removeClass('notLoggedIn');
+	});
 });
 
 
-// $.post("https://hn-favorites.herokuapp.com/stories.json", {"hacker_news_story":{"Title": data-id, "Author": data-by, "Id": data-id, "URL": data-url}}).then(function(response){
-//    console.log(response);
-//    console.log("Hello")
-// });
+
+
+
+
+
+
+
+
+
+
+});
