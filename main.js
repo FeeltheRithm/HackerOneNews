@@ -23,7 +23,6 @@ $(function(){
 			var title = $(event.target).parent().data("title");
 			var url = $(event.target).parent().data("url");
 			$.post("https://hn-favorites.herokuapp.com/stories.json", {"hacker_news_story":{"title": title, "by": by, "story_id": id, "url": url}}).then(function(response){
-	   			console.log(response);
 			});
 		}
 	});
@@ -35,17 +34,10 @@ $(function(){
 		var email = ($("#mail")).val();
 		var password = ($("#pass")).val();
 		$.post("https://hn-favorites.herokuapp.com/login", {"email": email, "password": password}).then(function(response){
-			var authToken = response;
+			var authToken = response.auth_token;
 			console.log(authToken);
+			window.localStorage.setItem("Authorization", authToken);
 			$(".notLoggedIn").addClass('loggedIn').removeClass('notLoggedIn');
+		});
 	});
-});
-
-
-
-
-
-
-
-
 });
