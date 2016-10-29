@@ -1,11 +1,29 @@
-$(function(){var favoritesArray = [];
-	$favoritesList = $("#favoritesList");
-	$.getJSON("https://hn-favorites.herokuapp.com/stories.json").then(function(response){
-		parseData(response);
-	}).catch(function(error){
-		console.log("error while trying to fetch data");
-	});
+$(function(){
 
+	var favoritesArray = [];
+	$favoritesList = $("#favoritesList");
+
+	getData();
+
+	function getData(){
+		$.ajax({
+		    method: "GET",
+		    headers: {Authorization:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE0Nzg1NjEzMDV9.eCXlXgD8FCxo1Ns-QmEScF8BMlgNxdYzoT4Ruh2XLpU"},
+		    url: "https://hn-favorites.herokuapp.com/stories.json",
+		    dataType: "json"
+		}).then(function(response){
+		    parseData(response);
+		}).catch(function(error){
+		    console.log("error while trying to fetch data: "+error);
+		});
+
+		// $.getJSON("https://hn-favorites.herokuapp.com/stories.json").then(function(response){
+		// 	parseData(response);
+		// }).catch(function(error){
+		// 	console.log("error while trying to fetch data");
+		// });
+	}
+	
 	function parseData(responseData){
 		favoritesArray = responseData;
 		console.log(favoritesArray);
@@ -63,7 +81,7 @@ $(function(){var favoritesArray = [];
 	function deleteFavoriteServerCall(idNumber, rowNumber){
 		$.ajax({
 		    method: "DELETE",
-		    header: "Content-Type: application/json",
+		    headers: {Authorization:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE0Nzg1NjEzMDV9.eCXlXgD8FCxo1Ns-QmEScF8BMlgNxdYzoT4Ruh2XLpU"},
 		    url: "https://hn-favorites.herokuapp.com/stories/"+idNumber+".json"
 		}).then(function(response){
 		    removeFavoriteFromDisplay(rowNumber);
@@ -71,6 +89,8 @@ $(function(){var favoritesArray = [];
 		    console.log(error);
 		});
 	}
+
+
 	
 
 
