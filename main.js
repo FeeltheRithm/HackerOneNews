@@ -1,5 +1,7 @@
 
 $(function(){
+	$("#mainDiv").hide();
+	$("#logout").hide();
 	$.get("https://hacker-news.firebaseio.com/v0/topstories.json").then(function(data){
 		console.log(data);
 		var topTen = data.slice(0,10);
@@ -37,7 +39,30 @@ $(function(){
 			var authToken = response.auth_token;
 			console.log(authToken);
 			window.localStorage.setItem("Authorization", authToken);
-			$(".notLoggedIn").addClass('loggedIn').removeClass('notLoggedIn');
+			$("#login").hide();
+			$("#mainDiv").show();
+			$("#logout").show();
 		});
 	});
+
+	$("#logout").on('submit', function(event){
+		event.preventDefault();
+		window.localStorage.clear();
+		$("#login").show();
+		$("#logout").hide();
+	});
+
+
+
 });
+
+
+
+
+
+
+
+//clear local storage on
+// .hide or .show
+
+
