@@ -13,3 +13,9 @@
 .border {
 	border: 1px solid red;
 }
+
+#homeBox {
+	position:fixed;
+	top: 0px;
+	right: 0px;
+}
