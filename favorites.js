@@ -2,13 +2,14 @@ $(function(){
 
 	var favoritesArray = [];
 	$favoritesList = $("#favoritesList");
+	var authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE0Nzg1NjEzMDV9.eCXlXgD8FCxo1Ns-QmEScF8BMlgNxdYzoT4Ruh2XLpU";
 
 	getData();
 
 	function getData(){
 		$.ajax({
 		    method: "GET",
-		    headers: {Authorization:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE0Nzg1NjEzMDV9.eCXlXgD8FCxo1Ns-QmEScF8BMlgNxdYzoT4Ruh2XLpU"},
+		    headers: {Authorization: authToken},
 		    url: "https://hn-favorites.herokuapp.com/stories.json",
 		    dataType: "json"
 		}).then(function(response){
@@ -81,7 +82,7 @@ $(function(){
 	function deleteFavoriteServerCall(idNumber, rowNumber){
 		$.ajax({
 		    method: "DELETE",
-		    headers: {Authorization:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE0Nzg1NjEzMDV9.eCXlXgD8FCxo1Ns-QmEScF8BMlgNxdYzoT4Ruh2XLpU"},
+		    headers: {Authorization: authToken},
 		    url: "https://hn-favorites.herokuapp.com/stories/"+idNumber+".json"
 		}).then(function(response){
 		    removeFavoriteFromDisplay(rowNumber);
