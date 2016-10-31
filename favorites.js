@@ -3,7 +3,6 @@ $(function(){
 
 	var favoritesArray = [];
 	$favoritesList = $("#favoritesList");
-	// var authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE0Nzg1NjEzMDV9.eCXlXgD8FCxo1Ns-QmEScF8BMlgNxdYzoT4Ruh2XLpU";
 
 	if(window.localStorage.getItem("Authorization")===null){
 		alert("Not logged in");
@@ -24,11 +23,6 @@ $(function(){
 		    console.log("error while trying to fetch data: "+error);
 		});
 
-		// $.getJSON("https://hn-favorites.herokuapp.com/stories.json").then(function(response){
-		// 	parseData(response);
-		// }).catch(function(error){
-		// 	console.log("error while trying to fetch data");
-		// });
 	}
 	
 	function parseData(responseData){
